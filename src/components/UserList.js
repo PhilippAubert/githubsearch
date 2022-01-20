@@ -1,7 +1,6 @@
 import User from "./User";
 
 export default function UserList({ data }) {
-  console.log(typeof data);
   function renderList() {
     let renderedList;
     if (Array.isArray(data)) {

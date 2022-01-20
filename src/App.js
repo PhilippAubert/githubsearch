@@ -34,7 +34,9 @@ function App() {
     e.preventDefault();
     const newUser = e.target.value;
     if (newUser.length > 2) {
-      setUserName(newUser);
+      setUserName([newUser]);
+    } else if (newUser.length === 0) {
+      setUserName("");
     }
   }
 
