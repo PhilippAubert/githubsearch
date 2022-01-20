@@ -6,7 +6,7 @@ export default function Header({ onChange }) {
       <h1>GIT HUB USERS</h1>
 
       <form>
-        <input type="text" onInput={onChange} />
+        <input type="text" placeholder="search users" onInput={onChange} />
       </form>
     </div>
   );
