@@ -1,16 +1,9 @@
 import User from "./User";
 
-export default function UserList({ data, key }) {
+export default function UserList({ data }) {
   function renderList() {
-    const renderedList = data.map((user) => (
-      <User
-        url={user.url}
-        avatar={user.avatar_url}
-        bio={user.login}
-        name={user.name}
-        key={user.id}
-      />
-    ));
+    const renderedList = data.map((data) => <User data={data} key={data.id} />);
+
     return renderedList;
   }
 

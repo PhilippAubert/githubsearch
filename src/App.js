@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header.js";
-import User from "./components/User.js";
+
+import UserList from "./components/UserList.js";
 
 function App() {
   const [data, setData] = useState([]);
-  const [userName, setUserName] = useState("example");
+  const [userName, setUserName] = useState([]);
 
   useEffect(() => {
-    fetch(`https://api.github.com/users?per_page=100&page=1`, {
+    const baseUrl = "https://api.github.com/users?per_page=100&page=1/";
+    let url = baseUrl;
+
+    fetch(url, {
       method: "GET",
       accept: "application/vnd.github.v3+json",
       headers: {
@@ -32,7 +36,7 @@ function App() {
     <div className="App">
       <Header onInput={handleSearch} />
       <div>
-        {data && data.map((data) => <User data={data} key={data.id} />)}
+        <UserList data={data} />
       </div>
     </div>
   );
