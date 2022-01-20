@@ -6,7 +6,6 @@ import UserList from "./components/UserList.js";
 
 function App() {
   const [data, setData] = useState([]);
-  const [userName, setUserName] = useState([]);
 
   useEffect(() => {
     const baseUrl = "https://api.github.com/users?per_page=100&page=1/";
@@ -22,13 +21,12 @@ function App() {
       .then((response) => response.json())
       .then((data) => setData(data))
       .catch((error) => console.error("error", error));
-  }, [userName]);
+  }, []);
 
   function handleSearch(e) {
     e.preventDefault();
     const newUser = e.target.value;
     if (newUser.length > 2) {
-      setUserName(newUser);
     }
   }
 
