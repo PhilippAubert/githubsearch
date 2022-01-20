@@ -34,7 +34,6 @@ function App() {
     const newUser = e.target.value;
     if (newUser.length > 2) {
       setUserName([newUser]);
-      console.log(typeof newUser);
     } else if (newUser.length === 0) {
       setUserName("");
     }
