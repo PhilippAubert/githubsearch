@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import "./App.css";
+import Header from "./components/Header.js";
+import User from "./components/User.js";
 
 function App() {
   const [data, setData] = useState([]);
   const [userName, setUserName] = useState("example");
 
   useEffect(() => {
-    fetch(`https://api.github.com/users/${userName}`, {
+    fetch(`https://api.github.com/users?per_page=100&page=1`, {
       method: "GET",
+      accept: "application/vnd.github.v3+json",
       headers: {
         Authorization: "token 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",
       },
@@ -27,17 +30,9 @@ function App() {
 
   return (
     <div className="App">
-      <h1>GIT HUB USERS</h1>
-
-      <form>
-        <input type="text" onInput={handleSearch} />
-      </form>
-
-      <div className="User">
-        <p>{data.url}</p>
-        <img src={data.avatar_url} alt="user_pic" />
-        <p>{data.bio}</p>
-        <p>{data.name}</p>
+      <Header onInput={handleSearch} />
+      <div>
+        {data && data.map((data) => <User data={data} key={data.id} />)}
       </div>
     </div>
   );
