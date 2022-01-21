@@ -1,11 +1,13 @@
 import User from "./User";
 import { useState, useEffect } from "react";
 import Modal from "./Modal";
+import useLocalStorage from "./utils/useLocalStorage";
 
 export default function UserList({ data }) {
   const [isModal, setIsModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [isEmpty, setIsEmpty] = useState(false);
+  const [user, setUser] = useLocalStorage("bookmarks", []);
 
   useEffect(() => {
     if (data.length === 0) {
@@ -18,11 +20,14 @@ export default function UserList({ data }) {
   function handleUser(data) {
     setSelectedUser(data);
     setIsModal(true);
-    console.log(data);
   }
 
-  function handleModal() {
+  function closeModal() {
     setIsModal(false);
+  }
+
+  function handleBookmark() {
+    setUser([...user, selectedUser]);
   }
 
   return (
@@ -34,7 +39,18 @@ export default function UserList({ data }) {
           <User data={data} key={data.id} onClick={handleUser} />
         ))
       )}
-      {isModal && <Modal data={selectedUser} onClick={handleModal} />}
+      {isModal && (
+        <Modal
+          data={selectedUser}
+          closeModal={closeModal}
+          handleBookmark={handleBookmark}
+        />
+      )}
+      {/*      {user.map(({ login, id, avatar_url }) => (
+        <p>
+          {login}, {id}, {avatar_url}
+        </p>
+      ))} */}
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header.js";
 import UserList from "./components/UserList.js";
+import Bookmark from "./components/Bookmark.js";
 
 function App() {
   const [data, setData] = useState([]);
@@ -43,6 +44,7 @@ function App() {
     <div className="App">
       <Header onChange={handleSearch} />
       <UserList data={data} key={data.id} />
+      <Bookmark />
     </div>
   );
 }

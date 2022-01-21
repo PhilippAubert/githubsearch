@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Modal({ data, onClick }) {
+export default function Modal({ data, closeModal, handleBookmark }) {
   return (
     <div
       style={{
@@ -10,11 +10,12 @@ export default function Modal({ data, onClick }) {
         width: "100vw",
         height: "100vh",
       }}
-      onClick={onClick}
     >
       <p>{data.login}</p>
       <p>{data.url}</p>
       <p>{data.subscriptions_url}</p>
+      <button onClick={handleBookmark}>bookmark user </button>
+      <button onClick={closeModal}>close window</button>
     </div>
   );
 }
