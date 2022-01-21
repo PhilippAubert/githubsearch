@@ -21,7 +21,7 @@ function App() {
       method: "GET",
       accept: "application/vnd.github.v3+json",
       headers: {
-        Authorization: "token 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",
+        Authorization: "token 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",
       },
     })
       .then((response) => response.json())
