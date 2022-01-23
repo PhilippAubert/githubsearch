@@ -46,11 +46,6 @@ export default function UserList({ data }) {
           handleBookmark={handleBookmark}
         />
       )}
-      {/*      {user.map(({ login, id, avatar_url }) => (
-        <p>
-          {login}, {id}, {avatar_url}
-        </p>
-      ))} */}
     </div>
   );
 }

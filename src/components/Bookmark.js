@@ -1,32 +1,41 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import BookmarkedUser from "./BookmarkedUser";
 
 export default function Bookmark() {
-  const [users, setUser] = useState([]);
+  const [usersFromLocal, setUsersFromLocal] = useState([]);
 
   useEffect(() => {
     const users = JSON.parse(localStorage.getItem("bookmarks"));
-    setUser(users);
+    setUsersFromLocal(users);
   }, []);
 
-  function handleRemove(user) {
-    const userToDelete = users.findIndex(
-      (usersToDelete) => usersToDelete.id === user.id
-    );
-    console.log(userToDelete);
-  }
+  console.log("bookmarked users", usersFromLocal);
 
+  function handleDelete(user) {
+    const userToDelete = usersFromLocal.findIndex(
+      (usersToDelete) => usersToDelete.login === user.login
+    );
+    console.log(`User removed`);
+    const copyOfUsers = usersFromLocal.slice();
+    copyOfUsers.splice(userToDelete, 1);
+    setUsersFromLocal(copyOfUsers);
+    localStorage.setItem("bookmarks", JSON.stringify(copyOfUsers));
+  }
   return (
     <div>
       <h1>BOOKMARKS </h1>
-      {users.map(({ login, id, avatar_url }) => (
-        <div>
-          <p>
-            {login}, {id}, {avatar_url}
-          </p>
-          <button onClick={handleRemove}>remove bookmark</button>
-        </div>
-      ))}
+      <h3>X</h3>
+
+      {usersFromLocal &&
+        usersFromLocal.map(({ login, id, avatar_url }) => (
+          <BookmarkedUser
+            key={id}
+            login={login}
+            avatar_url={avatar_url}
+            onClick={handleDelete}
+          />
+        ))}
     </div>
   );
 }
