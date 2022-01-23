@@ -7,6 +7,7 @@ import Bookmark from "./components/Bookmark.js";
 function App() {
   const [data, setData] = useState([]);
   const [userName, setUserName] = useState("");
+  const [showBookmarks, setShowBookmarks] = useState(false);
 
   useEffect(() => {
     let url;
@@ -40,11 +41,19 @@ function App() {
     }
   }
 
+  function onShowBookmarks() {
+    if (showBookmarks) {
+      setShowBookmarks(false);
+    } else {
+      setShowBookmarks(true);
+    }
+  }
+
   return (
     <div className="App">
-      <Header onChange={handleSearch} />
+      <Header onChange={handleSearch} onClick={onShowBookmarks} />
       <UserList data={data} key={data.id} />
-      <Bookmark />
+      {showBookmarks && <Bookmark data={data} onClick={onShowBookmarks} />}
     </div>
   );
 }
