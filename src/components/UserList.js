@@ -1,13 +1,11 @@
 import User from "./User";
 import { useState, useEffect } from "react";
 import Modal from "./Modal";
-import useLocalStorage from "./utils/useLocalStorage";
 
 export default function UserList({ data }) {
   const [isModal, setIsModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [isEmpty, setIsEmpty] = useState(false);
-  const [user, setUser] = useLocalStorage("bookmarks", []);
 
   useEffect(() => {
     if (data.length === 0) {
@@ -27,7 +25,19 @@ export default function UserList({ data }) {
   }
 
   function handleBookmark() {
-    setUser([...user, selectedUser]);
+    const usersFromLocal = JSON.parse(localStorage.getItem("bookmarks")) || [];
+    const existingUser = usersFromLocal.find(
+      (user) => user.login === selectedUser.login
+    );
+
+    if (existingUser) {
+      alert("User is already bookmarked");
+    } else {
+      usersFromLocal.push(selectedUser);
+      console.log(`${selectedUser.login} is bookmarked`);
+      localStorage.setItem("bookmarks", JSON.stringify(usersFromLocal));
+    }
+    setIsModal(false);
   }
 
   return (
