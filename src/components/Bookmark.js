@@ -4,10 +4,16 @@ import BookmarkedUser from "./BookmarkedUser";
 
 export default function Bookmark() {
   const [usersFromLocal, setUsersFromLocal] = useState([]);
+  const [isBookmarked, setIsBookmarked] = useState(true);
 
   useEffect(() => {
     const users = JSON.parse(localStorage.getItem("bookmarks"));
     setUsersFromLocal(users);
+    if (users.length === 0) {
+      setIsBookmarked(true);
+    } else {
+      setIsBookmarked(false);
+    }
   }, []);
 
   function handleDelete(user) {
@@ -23,7 +29,9 @@ export default function Bookmark() {
     <div>
       <h1>BOOKMARKS </h1>
       <h3>X</h3>
-      {usersFromLocal &&
+      {isBookmarked ? (
+        <p>Nothing bookmarked yet</p>
+      ) : (
         usersFromLocal.map(({ login, id, avatar_url }) => (
           <BookmarkedUser
             key={id}
@@ -31,7 +39,8 @@ export default function Bookmark() {
             avatar_url={avatar_url}
             onHandleDelete={handleDelete}
           />
-        ))}
+        ))
+      )}
     </div>
   );
 }
