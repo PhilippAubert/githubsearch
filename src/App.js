@@ -31,7 +31,7 @@ function App() {
       .then((data) => setData(data.items))
       .catch((error) => console.error("error", error));
 
-    /*     fetch(`https://api.github.com/users/${userName}/followers`, options)
+    fetch(`https://api.github.com/users/${userName}/followers`, options)
       .then((response) => response.json())
       .then((followers) => setFollowers(followers))
       .catch((error) => console.error("error", error));
@@ -39,7 +39,7 @@ function App() {
     fetch(`https://api.github.com/users/${userName}/repos`, options)
       .then((res) => res.json())
       .then((repos) => setRepos(repos))
-      .catch((e) => console.error("error", e)); */
+      .catch((e) => console.error("error", e));
   }, [userName]);
 
   function handleSearch(e) {
