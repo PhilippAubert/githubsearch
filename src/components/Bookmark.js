@@ -20,8 +20,11 @@ export default function Bookmark({ onClick }) {
     const userToDelete = usersFromLocal.find(
       (usersToDelete) => usersToDelete.login === user.login
     );
-    const copyOfUsers = usersFromLocal.slice().splice(userToDelete, 1);
-    setUsersFromLocal(usersFromLocal.filter((user) => user !== userToDelete));
+    console.log(`${userToDelete.login} was removed`);
+    const copyOfUsers = usersFromLocal
+      .slice()
+      .filter((users) => users.id !== userToDelete.id);
+    setUsersFromLocal(copyOfUsers);
     localStorage.setItem("bookmarks", JSON.stringify(copyOfUsers));
   }
 
