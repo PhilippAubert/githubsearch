@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./components/Header.js";
 import UserList from "./components/UserList.js";
 import Bookmark from "./components/Bookmark.js";
+import Footer from "./components/Footer.js";
 
 function App() {
   const [data, setData] = useState([]);
@@ -81,6 +82,7 @@ function App() {
           repos={repos}
         />
       )}
+      <Footer />
     </div>
   );
 }
