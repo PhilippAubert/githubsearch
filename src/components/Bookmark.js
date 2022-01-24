@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import BookmarkedUser from "./BookmarkedUser";
 
-export default function Bookmark({ onClick }) {
+export default function Bookmark({ onClick, followers, repos }) {
   const [usersFromLocal, setUsersFromLocal] = useState([]);
   const [isBookmarked, setIsBookmarked] = useState(true);
 
@@ -44,6 +44,8 @@ export default function Bookmark({ onClick }) {
             <BookmarkedUser
               key={data.id}
               data={data}
+              followers={followers}
+              repos={repos}
               onHandleDelete={() => handleDelete(data)}
             />
           ))

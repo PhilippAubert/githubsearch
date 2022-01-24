@@ -1,7 +1,12 @@
 import React from "react";
 import { useState } from "react";
 
-export default function BookmarkedUser({ data, onHandleDelete }) {
+export default function BookmarkedUser({
+  data,
+  onHandleDelete,
+  followers,
+  repos,
+}) {
   const [showDetails, setShowDetails] = useState(false);
 
   function onShowDetails() {
@@ -10,18 +15,6 @@ export default function BookmarkedUser({ data, onHandleDelete }) {
       setShowDetails(false);
     }
   }
-
-  fetch(`https://api.github.com/users/${data.login}/followers`)
-    .then((res) => res.json())
-    .then((followers) =>
-      followers.forEach((follower) => console.log("FOLLOWERS", follower.login))
-    );
-
-  fetch(`https://api.github.com/users/${data.login}/repos`)
-    .then((res) => res.json())
-    .then((repos) =>
-      repos.forEach((repo) => console.log("REPOSITORIES", repo.name))
-    );
 
   return (
     <div>
@@ -38,10 +31,9 @@ export default function BookmarkedUser({ data, onHandleDelete }) {
       </div>
       {showDetails ? (
         <div>
-          <p>Followers: {data.followers_url}</p>
-          <p>Public Repos: {data.repos_url.length}</p>
-          <p></p>
-          <p>Starred Repos: {data.starred_url.length}</p>
+          <p>Followers: {followers.length}</p>
+          <p>Public Repos: {repos.length}</p>
+          <p>See all repos here:{data.repos_url}</p>
         </div>
       ) : (
         <p>click for details</p>

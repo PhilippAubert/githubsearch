@@ -7,28 +7,39 @@ import Bookmark from "./components/Bookmark.js";
 function App() {
   const [data, setData] = useState([]);
   const [userName, setUserName] = useState("");
+  const [followers, setFollowers] = useState([]);
+  const [repos, setRepos] = useState([]);
   const [showBookmarks, setShowBookmarks] = useState(false);
+  const [showInitialText, setShowInitialText] = useState(true);
 
   useEffect(() => {
     let url;
-    if (!userName) {
-      url = `https://api.github.com/search/users?per_page=100&q=defunkt`;
-    }
+    const options = {
+      method: "GET",
+      accept: "application/vnd.github.v3+json",
+      headers: {
+        Authorization: "token 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",
+      },
+    };
 
     if (userName) {
       url = `https://api.github.com/search/users?per_page=100&q=${userName}`;
     }
 
-    fetch(url, {
-      method: "GET",
-      accept: "application/vnd.github.v3+json",
-      headers: {
-        Authorization: `token ${process.env.REACT_APP_TOKEN}`,
-      },
-    })
+    fetch(url, options)
       .then((response) => response.json())
       .then((data) => setData(data.items))
       .catch((error) => console.error("error", error));
+
+    /*     fetch(`https://api.github.com/users/${userName}/followers`, options)
+      .then((response) => response.json())
+      .then((followers) => setFollowers(followers))
+      .catch((error) => console.error("error", error));
+
+    fetch(`https://api.github.com/users/${userName}/repos`, options)
+      .then((res) => res.json())
+      .then((repos) => setRepos(repos))
+      .catch((e) => console.error("error", e)); */
   }, [userName]);
 
   function handleSearch(e) {
@@ -36,8 +47,9 @@ function App() {
     const newUser = e.target.value;
     if (newUser.length > 2) {
       setUserName([newUser]);
-    } else if (newUser.length === 0) {
-      setUserName("");
+      setShowInitialText(false);
+    } else {
+      setShowInitialText(true);
     }
   }
 
@@ -52,8 +64,23 @@ function App() {
   return (
     <div className="App">
       <Header onChange={handleSearch} onClick={onShowBookmarks} />
-      <UserList data={data} key={data.id} />
-      {showBookmarks && <Bookmark onClick={onShowBookmarks} />}
+      {showInitialText ? (
+        <p>type to search for user </p>
+      ) : (
+        <UserList
+          data={data}
+          key={data.id}
+          followers={followers}
+          repos={repos}
+        />
+      )}
+      {showBookmarks && (
+        <Bookmark
+          onClick={onShowBookmarks}
+          followers={followers}
+          repos={repos}
+        />
+      )}
     </div>
   );
 }
