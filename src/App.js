@@ -66,7 +66,7 @@ function App() {
     <div className="App">
       <Header onChange={handleSearch} onClick={onShowBookmarks} />
       {showInitialText ? (
-        <p>type to search for user </p>
+        <p className="Initial-Text">type to search for user </p>
       ) : (
         <UserList
           data={data}

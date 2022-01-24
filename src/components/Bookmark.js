@@ -17,11 +17,12 @@ export default function Bookmark({ onClick, followers, repos }) {
   }, []);
 
   function handleDelete(user) {
-    const copyOfUsers = usersFromLocal
-      .slice()
-      .filter((users) => users.id !== user.id);
+    const copyOfUsers = usersFromLocal.filter((users) => users.id !== user.id);
     setUsersFromLocal(copyOfUsers);
     localStorage.setItem("bookmarks", JSON.stringify(copyOfUsers));
+    if (copyOfUsers.length === 0) {
+      setIsBookmarked(true);
+    }
   }
 
   return (

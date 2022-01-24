@@ -1,6 +1,7 @@
 import User from "./User";
 import { useState, useEffect } from "react";
 import Modal from "./Modal";
+import "./CSS/UserList.css";
 
 export default function UserList({ data }) {
   const [isModal, setIsModal] = useState(false);
@@ -27,7 +28,7 @@ export default function UserList({ data }) {
   function handleBookmark() {
     const usersFromLocal = JSON.parse(localStorage.getItem("bookmarks")) || [];
     const existingUser = usersFromLocal.find(
-      (user) => user.login === selectedUser.login
+      (user) => user.login === selectedUser.logins
     );
 
     if (existingUser) {
@@ -41,7 +42,7 @@ export default function UserList({ data }) {
   }
 
   return (
-    <div>
+    <div className="User-List">
       {isEmpty ? (
         <p>no users found</p>
       ) : (
