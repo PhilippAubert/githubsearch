@@ -23,7 +23,7 @@ function App() {
       method: "GET",
       accept: "application/vnd.github.v3+json",
       headers: {
-        Authorization: "token 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",
+        Authorization: `token ${process.env.REACT_APP_TOKEN}`,
       },
     })
       .then((response) => response.json())

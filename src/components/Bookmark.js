@@ -7,23 +7,19 @@ export default function Bookmark({ onClick }) {
 
   useEffect(() => {
     const users = JSON.parse(localStorage.getItem("bookmarks"));
+    console.log(users);
     setUsersFromLocal(users);
     if (users.length === 0) {
       setIsBookmarked(true);
     } else {
       setIsBookmarked(false);
     }
-    console.log(users);
   }, []);
 
   function handleDelete(user) {
-    const userToDelete = usersFromLocal.find(
-      (usersToDelete) => usersToDelete.login === user.login
-    );
-    console.log(`${userToDelete.login} was removed`);
     const copyOfUsers = usersFromLocal
       .slice()
-      .filter((users) => users.id !== userToDelete.id);
+      .filter((users) => users.id !== user.id);
     setUsersFromLocal(copyOfUsers);
     localStorage.setItem("bookmarks", JSON.stringify(copyOfUsers));
   }
