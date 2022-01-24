@@ -23,7 +23,7 @@ function App() {
       method: "GET",
       accept: "application/vnd.github.v3+json",
       headers: {
-        Authorization: "token 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",
+        Authorization: "token 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",
       },
     })
       .then((response) => response.json())
@@ -53,7 +53,7 @@ function App() {
     <div className="App">
       <Header onChange={handleSearch} onClick={onShowBookmarks} />
       <UserList data={data} key={data.id} />
-      {showBookmarks && <Bookmark data={data} onClick={onShowBookmarks} />}
+      {showBookmarks && <Bookmark onClick={onShowBookmarks} />}
     </div>
   );
 }

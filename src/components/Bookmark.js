@@ -1,8 +1,7 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import BookmarkedUser from "./BookmarkedUser";
 
-export default function Bookmark({ onClick, data }) {
+export default function Bookmark({ onClick }) {
   const [usersFromLocal, setUsersFromLocal] = useState([]);
   const [isBookmarked, setIsBookmarked] = useState(true);
 
@@ -14,15 +13,15 @@ export default function Bookmark({ onClick, data }) {
     } else {
       setIsBookmarked(false);
     }
+    console.log(users);
   }, []);
 
   function handleDelete(user) {
-    const userToDelete = usersFromLocal.findIndex(
+    const userToDelete = usersFromLocal.find(
       (usersToDelete) => usersToDelete.login === user.login
     );
-    const copyOfUsers = usersFromLocal.slice();
-    copyOfUsers.splice(userToDelete, 1);
-    setUsersFromLocal(copyOfUsers);
+    const copyOfUsers = usersFromLocal.slice().splice(userToDelete, 1);
+    setUsersFromLocal(usersFromLocal.filter((user) => user !== userToDelete));
     localStorage.setItem("bookmarks", JSON.stringify(copyOfUsers));
   }
 
@@ -46,7 +45,7 @@ export default function Bookmark({ onClick, data }) {
             <BookmarkedUser
               key={data.id}
               data={data}
-              onHandleDelete={handleDelete}
+              onHandleDelete={() => handleDelete(data)}
             />
           ))
           .reverse()
