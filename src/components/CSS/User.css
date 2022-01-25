@@ -1,0 +1,16 @@
+.User {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.User-frame {
+  display: flex;
+  justify-content: space-between;
+}
+
+.User-image {
+  width: 25vw;
+  height: 15vh;
+  margin-right: 2em;
+}

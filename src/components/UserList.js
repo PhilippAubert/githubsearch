@@ -44,7 +44,7 @@ export default function UserList({ data }) {
   return (
     <div className="User-List">
       {isEmpty ? (
-        <p>no users found</p>
+        <p className="Starter-text">no users found</p>
       ) : (
         data.map((data) => (
           <User data={data} key={data.id} onClick={handleUser} />

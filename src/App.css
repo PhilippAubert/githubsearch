@@ -8,7 +8,6 @@
   width: 100vw;
   height: 100vh;
   display: grid;
-
   grid-template-rows: 4em auto 4em;
   grid-template-columns: 0.5em auto 0.5em;
 }
@@ -16,4 +15,8 @@
 .Initial-Text {
   grid-row: 2/3;
   grid-column: 2/3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
