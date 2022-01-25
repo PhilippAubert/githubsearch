@@ -1,4 +1,20 @@
 .Header {
   grid-column: 2/3;
-  grid-row: 1/3;
+  grid-row: 1/2;
+}
+
+.Header-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.Header-row_logo {
+  height: 11vh;
+  width: 11vw;
+}
+
+.Header-row_headline-form-input {
+  justify-content: center;
+  width: 100%;
 }

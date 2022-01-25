@@ -1,21 +1,33 @@
 import "./CSS/Header.css";
+import githubcat from "./SVGS/githubcat.svg";
+import star from "./SVGS/star.svg";
 
 export default function Header({ onChange, onClick }) {
   return (
     <div className="Header">
-      <h1 className="Headline">GIT HUB USERS</h1>
+      <div className="Header-row">
+        <img className="Header-row_logo" src={githubcat} alt="github svg" />
 
-      <form className="Headline-Form">
-        <input
-          className="Headline-Form-Input"
-          type="text"
-          placeholder="search users"
-          onInput={onChange}
+        <div className="Header-row_middle-section">
+          <h1 className="Header-row_headline">GIT HUB USERS</h1>
+
+          <form className="Header-row_headline-form">
+            <input
+              className="Header-row_headline-form-input"
+              type="text"
+              placeholder="search users"
+              onInput={onChange}
+            />
+          </form>
+        </div>
+
+        <img
+          className="Header-row_logo"
+          src={star}
+          onClick={onClick}
+          alt="star svg"
         />
-      </form>
-      <button className="Headline-Button" onClick={onClick}>
-        Show bookmarks
-      </button>
+      </div>
     </div>
   );
 }
