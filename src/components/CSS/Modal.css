@@ -1,0 +1,57 @@
+.Modal {
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  color: #fff;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.Modal-User-Frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Modal-User_img {
+  width: 80%;
+  height: 80%;
+}
+
+.Modal-User_Information {
+  display: flex;
+  margin: 3em 0 2em;
+}
+
+.Modal-User_Information-details {
+  width: 40vw;
+}
+
+.Modal-User_href {
+  font-weight: 800;
+  color: #fff;
+  border: 3px solid #fff;
+  padding: 0.6em;
+  border-radius: 50px;
+}
+
+.Modal-User-Buttons {
+  margin: 1em 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Modal-User-Buttons_button {
+  border: none;
+  color: #000;
+  margin: 1rem;
+  padding: 1em;
+  border-radius: 10px;
+  font-weight: 800;
+}

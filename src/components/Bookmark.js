@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
 import BookmarkedUser from "./BookmarkedUser";
+import "./CSS/Bookmark.css";
 
-export default function Bookmark({ onClick, followers, repos }) {
+export default function Bookmark({ onClick, followers, repos, data }) {
   const [usersFromLocal, setUsersFromLocal] = useState([]);
-  const [isBookmarked, setIsBookmarked] = useState(true);
+  const [isBookmarked, setIsBookmarked] = useState(false);
 
   useEffect(() => {
     const users = JSON.parse(localStorage.getItem("bookmarks"));
-    console.log(users);
-    setUsersFromLocal(users);
-    if (users.length === 0) {
-      setIsBookmarked(true);
-    } else {
+    if (users === null || users.length === 0) {
       setIsBookmarked(false);
+    } else {
+      setIsBookmarked(true);
+      setUsersFromLocal(users);
     }
   }, []);
 
@@ -26,20 +26,11 @@ export default function Bookmark({ onClick, followers, repos }) {
   }
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 490,
-        width: "100vw",
-        height: "100vh",
-      }}
-    >
+    <div>
       <h1>BOOKMARKS </h1>
+
       <h3 onClick={onClick}>Close</h3>
       {isBookmarked ? (
-        <p>Nothing bookmarked yet</p>
-      ) : (
         usersFromLocal
           .map((data) => (
             <BookmarkedUser
@@ -51,6 +42,8 @@ export default function Bookmark({ onClick, followers, repos }) {
             />
           ))
           .reverse()
+      ) : (
+        <p>Nothing bookmarked yet</p>
       )}
     </div>
   );

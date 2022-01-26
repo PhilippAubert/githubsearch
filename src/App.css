@@ -2,13 +2,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-decoration: none;
 }
 
 .App {
   width: 100vw;
   height: 100vh;
   display: grid;
-  grid-template-rows: 4em auto 4em;
+  grid-template-rows: 7em auto 4em;
   grid-template-columns: 0.5em auto 0.5em;
 }
 

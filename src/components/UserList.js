@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Modal from "./Modal";
 import "./CSS/UserList.css";
 
-export default function UserList({ data }) {
+export default function UserList({ data, followers, repos }) {
   const [isModal, setIsModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [isEmpty, setIsEmpty] = useState(false);
@@ -52,6 +52,8 @@ export default function UserList({ data }) {
       )}
       {isModal && (
         <Modal
+          followers={followers}
+          repos={repos}
           data={selectedUser}
           closeModal={closeModal}
           handleBookmark={handleBookmark}

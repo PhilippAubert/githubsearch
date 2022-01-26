@@ -77,6 +77,7 @@ function App() {
       )}
       {showBookmarks && (
         <Bookmark
+          data={data}
           onClick={onShowBookmarks}
           followers={followers}
           repos={repos}

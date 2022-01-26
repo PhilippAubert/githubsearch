@@ -1,5 +1,5 @@
-import React from "react";
 import { useState } from "react";
+import "./CSS/User.css";
 
 export default function BookmarkedUser({
   data,
@@ -17,7 +17,7 @@ export default function BookmarkedUser({
   }
 
   return (
-    <div>
+    <div className="Bookmark-List">
       {" "}
       <div>
         <p>{data.login}</p>
@@ -29,14 +29,12 @@ export default function BookmarkedUser({
           {showDetails ? "hide details" : "show details"}
         </button>
       </div>
-      {showDetails ? (
+      {showDetails && (
         <div>
           <p>Followers: {followers.length}</p>
           <p>Public Repos: {repos.length}</p>
           <p>See all repos here:{data.repos_url}</p>
         </div>
-      ) : (
-        <p>click for details</p>
       )}
     </div>
   );

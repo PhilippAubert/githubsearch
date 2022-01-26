@@ -1,0 +1,8 @@
+.Bookmark-List {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0.5rem;
+}
