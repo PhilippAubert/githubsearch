@@ -34,7 +34,7 @@ function App() {
 
     fetch(`https://api.github.com/users/${userName}/followers`, options)
       .then((response) => response.json())
-      .then((followers) => setFollowers(followers))
+      .then((followers) => setFollowers("Followers", followers))
       .catch((error) => console.error("error", error));
 
     fetch(`https://api.github.com/users/${userName}/repos`, options)
