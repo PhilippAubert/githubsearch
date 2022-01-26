@@ -14,3 +14,18 @@
   height: 15vh;
   margin-right: 2em;
 }
+
+.User-frame_info {
+  display: flex;
+  flex-direction: column;
+  margin: 1em 0;
+}
+
+.User-button {
+  border: none;
+  color: #000;
+  margin: 1rem 0;
+  padding: 0.5em;
+  border-radius: 10px;
+  font-weight: 800;
+}

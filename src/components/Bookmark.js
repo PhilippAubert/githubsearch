@@ -38,8 +38,6 @@ export default function Bookmark({ onClick, followers, repos }) {
               <BookmarkedUser
                 key={data.id}
                 data={data}
-                followers={followers}
-                repos={repos}
                 onHandleDelete={() => handleDelete(data)}
               />
             ))
