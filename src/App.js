@@ -18,9 +18,6 @@ function App() {
     const options = {
       method: "GET",
       accept: "application/vnd.github.v3+json",
-      headers: {
-        Authorization: "token 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",
-      },
     };
 
     if (userName) {
@@ -66,7 +63,7 @@ function App() {
     <div className="App">
       <Header onChange={handleSearch} onClick={onShowBookmarks} />
       {showInitialText ? (
-        <p className="Initial-Text">type to search for user </p>
+        <p className="Initial-Text">type to search </p>
       ) : (
         <UserList
           data={data}
