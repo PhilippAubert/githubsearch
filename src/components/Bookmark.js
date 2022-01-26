@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import BookmarkedUser from "./BookmarkedUser";
 import "./CSS/Bookmark.css";
 
-export default function Bookmark({ onClick, followers, repos, data }) {
+export default function Bookmark({ onClick, followers, repos }) {
   const [usersFromLocal, setUsersFromLocal] = useState([]);
   const [isBookmarked, setIsBookmarked] = useState(false);
 
@@ -14,6 +14,7 @@ export default function Bookmark({ onClick, followers, repos, data }) {
       setIsBookmarked(true);
       setUsersFromLocal(users);
     }
+    console.log(users);
   }, []);
 
   function handleDelete(user) {
@@ -26,25 +27,27 @@ export default function Bookmark({ onClick, followers, repos, data }) {
   }
 
   return (
-    <div>
+    <div className="Bookmark-List">
       <h1>BOOKMARKS </h1>
 
       <h3 onClick={onClick}>Close</h3>
-      {isBookmarked ? (
-        usersFromLocal
-          .map((data) => (
-            <BookmarkedUser
-              key={data.id}
-              data={data}
-              followers={followers}
-              repos={repos}
-              onHandleDelete={() => handleDelete(data)}
-            />
-          ))
-          .reverse()
-      ) : (
-        <p>Nothing bookmarked yet</p>
-      )}
+      <div className="Bookmark-List">
+        {isBookmarked ? (
+          usersFromLocal
+            .map((data) => (
+              <BookmarkedUser
+                key={data.id}
+                data={data}
+                followers={followers}
+                repos={repos}
+                onHandleDelete={() => handleDelete(data)}
+              />
+            ))
+            .reverse()
+        ) : (
+          <p>Nothing bookmarked yet</p>
+        )}
+      </div>
     </div>
   );
 }
